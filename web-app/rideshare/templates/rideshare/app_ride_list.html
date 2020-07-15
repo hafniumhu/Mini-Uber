@@ -1,0 +1,38 @@
+{% extends 'rideshare/base.html' %}
+
+{% block title %}All rides{% endblock %}
+
+{% block content %}
+    <h4>Open Rides</h4>
+    <hr>
+    {% for ride in rides %}
+    {% if ride.status == 'open' %}
+        <div class="card" style="width: 28rem;">
+        <div class="card-body">
+            <h5 class="card-title">Ride to {{ ride.dest }}</h5>
+            <p class="card-text">Requested arrival time: {{ ride.arrival}}</p>
+            <p class="card-text">Ride Owner: {{ ride.owner }}</p>
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'rideshare:ridedetail' ride.id %}" role="button">View Detail</a>
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'rideshare:rideedit' ride.id %}" role="button">Edit Ride</a>
+        </div>
+        </div>
+    <br>
+    {% endif %}
+    {% endfor %}
+    <br>
+    <h4>Confirmed Rides</h4>
+    <hr>
+    {% for ride in rides %}
+    {% if ride.status == 'confirmed' %}
+        <div class="card" style="width: 28rem;">
+        <div class="card-body">
+            <h5 class="card-title">Ride to {{ ride.dest }}</h5>
+            <p class="card-text">Requested arrival time: {{ ride.arrival}}</p>
+            <p class="card-text">Ride Owner: {{ ride.owner }}</p>
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'rideshare:ridedetail' ride.id %}" role="button">View Detail</a>
+        </div>
+        </div>
+    <br>
+    {% endif %}
+    {% endfor %}
+{% endblock %}

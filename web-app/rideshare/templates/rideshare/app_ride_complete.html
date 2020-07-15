@@ -1,0 +1,19 @@
+{% extends "rideshare/base.html" %}
+{% block content %}
+<h4>Complete ride to {{ object.dest }}</h4>
+<hr>
+<ul class="list-group">
+    <li class="list-group-item">Requested arrival time is {{ object.arrival}}</li>
+    <li class="list-group-item">Ride owner {{ object.owner }}</li>
+    <li class="list-group-item">Ride Status: {{ object.status }}</li>
+    <li class="list-group-item">Ride Driver: {{ object.driver }}</li>
+    <li class="list-group-item">Requested vehicle type: {{ object.v_type }}</li>
+    <li class="list-group-item">Owner's special request: {{ object.user_special }}</li>
+</ul>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-outline-primary btn-sm" type="submit">Complete</button>
+</form>
+{% endblock content %}

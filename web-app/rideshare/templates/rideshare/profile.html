@@ -1,0 +1,26 @@
+{% extends "rideshare/base.html" %}
+{% block content %}
+<h3>Welcome back, {{ user.username }}</h3>
+<hr>
+<p>Your Email Address: {{ user.email }}</p>
+<a class="btn btn-outline-primary btn-sm" href="{% url 'rideshare:profileupdate' %}" role="button">Update Email Address</a>
+<br>
+{% if user.will_drive == True %}
+<br>
+<h5>You've registered as a driver.</h5>
+<br>
+<p>Registered Name: {{ user.user_name }}</p>
+<p>Plate Number: {{ user.vehicle_plate }}</p>
+<p>Vehicle Type: {{ user.vehicle_type }}</p>
+<p>Vehivle Capacity: {{ user.vehicle_capacity }}</p>
+<p>Vehivle Special Information: {{ user.vehicle_special }}</p>
+<a class="btn btn-outline-primary btn-sm" href="{% url 'rideshare:driverinfo' %}" role="button">Update Vehicle Information</a>
+{% else %}
+<br>
+<h5>Not registered as driver yet.<h5>
+<a class="btn btn-outline-primary btn-sm" href="{% url 'rideshare:driverinfo' %}" role="button">Register as a driver now</a>
+{% endif %}
+
+{% endblock content %}
+
+

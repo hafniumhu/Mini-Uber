@@ -1,0 +1,10 @@
+{% extends "rideshare/base.html" %}
+{% block content %}
+<h4>Join this ride</h4>
+<hr>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-outline-primary btn-sm" type="submit">Confirm</button>
+</form>
+{% endblock content %}

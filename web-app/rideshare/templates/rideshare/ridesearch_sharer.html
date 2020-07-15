@@ -1,0 +1,51 @@
+{% extends 'rideshare/base.html' %}
+
+{% block title %}Available rides{% endblock %}
+
+<!-- <form method='GET' , action=''>
+    <input type='text' , name='query' , placeholder='Search rides' , value='{{request.get.query}}' />
+    <input type='submit' , value='Search' />
+</form> -->
+{% block content %}
+
+<h4>Filter Rides</h4>
+<hr>
+<form method="GET" action=".">
+
+    <p>Destination: <input type="search", name="dest"/></p>
+    <p>Number of passenger: <input type="number", name="num_passenger" /></p>
+ 
+    <div>
+        <p><div>
+            <label for="arrival_early">Earliest Arrival</label>
+            <input type="date", id="arrival_early", name="early">
+        </div></p>
+        <p><div>
+            <label for="arrival_late">Latest Arrival</label>
+            <input type="date", id="arrival_late", name="late">
+        </div></p>
+    </div>
+    <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>
+</form>
+
+<div>
+    <br><br>
+    <h4>Search Result:</h4>
+    <hr>
+    {% for ride in queryset %}
+    {% if ride.status == 'open' and ride.sharable %}
+        <div class="card" style="width: 28rem;">
+        <div class="card-body">
+            <h5 class="card-title">Ride to {{ ride.dest }}</h5>
+            <p class="card-text">Requested arrival time is {{ ride.arrival}}</p>
+            <p class="card-text">Ride Owner: {{ ride.owner }}</p>
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'rideshare:ridedetail' ride.id %}" role="button">View Detail</a>
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'rideshare:ridejoin' ride.id %}" role="button">Join</a>
+        </div>
+        </div>
+    <br>
+    {% endif %}
+    {% endfor %}
+    
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'rideshare/base.html' %}
+
+{% block title %}Ride Request{% endblock %}
+
+{% block content %}
+  <h4>Ride</h4>
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-outline-primary btn-sm" type="submit">Request</button>
+  </form>
+{% endblock %}
